@@ -13,7 +13,7 @@ Python v3.10 and above
 ## Installation
 
 ```bash
-git clone https://github.com/ONLYOFFICE/build_tools.git
+git clone https://github.com/GbOffice/build_tools.git
 cd build_tools/scripts/sdkjs_common/jsdoc
 npm install
 ```

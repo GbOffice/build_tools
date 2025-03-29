@@ -208,7 +208,7 @@ if __name__ == "__main__":
         type=str, 
         help="Destination directory for the generated documentation",
         nargs='?',  # Indicates the argument is optional
-        default="../../../onlyoffice.github.io\sdkjs-plugins\content\macros\libs/"  # Default value
+        default="../../../gboffice.github.io\sdkjs-plugins\content\macros\libs/"  # Default value
     )
     args = parser.parse_args()
     
