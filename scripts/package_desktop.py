@@ -230,7 +230,7 @@ def make_macos():
     sparkle_updates = True
     released_updates_dir = "%s/%s/_updates" % (utils.get_env("ARCHIVES_DIR"), scheme)
     plistbuddy = "/usr/libexec/PlistBuddy"
-    plist_path = "%s/%s/GbOffice/Resources/%s-%s/Info.plist" \
+    plist_path = "%s/%s/ONLYOFFICE/Resources/%s-%s/Info.plist" \
         % (common.workspace_dir, branding_dir, package_name, suffix)
 
     appcast = utils.sh_output('%s -c "Print :SUFeedURL" %s' \

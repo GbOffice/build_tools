@@ -4,9 +4,9 @@
 
 **build_tools** allow you to automatically get and install all the components
 necessary for the compilation process, all the dependencies required for the
-**GbOffice Document Server**, **Document Builder** and **Desktop Editors**
+**ONLYOFFICE Document Server**, **Document Builder** and **Desktop Editors**
  correct work, as well as to get the latest version of
-**GbOffice products** source code and build all their components.
+**ONLYOFFICE products** source code and build all their components.
 
 **Important!**  We can only guarantee the correct work of the products built from
 the `master` branch.
@@ -23,12 +23,12 @@ You might need to install **Python**, depending on your version of Ubuntu:
 sudo apt-get install -y python
 ```
 
-### Building GbOffice products source code
+### Building ONLYOFFICE products source code
 
 1. Clone the build_tools repository:
 
     ```bash
-    git clone https://github.com/GbOffice/build_tools.git
+    git clone https://github.com/ONLYOFFICE/build_tools.git
     ```
 
 2. Go to the `build_tools/tools/linux` directory:
@@ -43,12 +43,12 @@ sudo apt-get install -y python
     ./automate.py
     ```
 
-If you run the script without any parameters this allows to build **GbOffice
+If you run the script without any parameters this allows to build **ONLYOFFICE
 Document Server**, **Document Builder** and **Desktop Editors**.
 
 The result will be available in the `./out` directory.
 
-To build **GbOffice** products separately run the script with the parameter
+To build **ONLYOFFICE** products separately run the script with the parameter
 corresponding to the necessary product.
 
 It’s also possible to build several products at once as shown in the example
@@ -62,7 +62,7 @@ below.
 
 ### Using Docker
 
-You can also build all **GbOffice products** at once using Docker.
+You can also build all **ONLYOFFICE products** at once using Docker.
 Build the `onlyoffice-document-editors-builder` Docker image using the
 provided `Dockerfile` and run the corresponding Docker container.
 
@@ -74,7 +74,7 @@ docker run -v $PWD/out:/build_tools/out onlyoffice-document-editors-builder
 
 The result will be available in the `./out` directory.
 
-### Building and running GbOffice products separately
+### Building and running ONLYOFFICE products separately
 
 #### Document Builder
 
@@ -87,7 +87,7 @@ The result will be available in the `./out` directory.
 ##### Running Document Builder
 
 ```bash
-cd ../../out/linux_64/gboffice/documentbuilder
+cd ../../out/linux_64/onlyoffice/documentbuilder
 ./docbuilder
 ```
 
@@ -102,7 +102,7 @@ cd ../../out/linux_64/gboffice/documentbuilder
 ##### Running Desktop Editors
 
 ```bash
-cd ../../out/linux_64/gboffice/desktopeditors
+cd ../../out/linux_64/onlyoffice/desktopeditors
 LD_LIBRARY_PATH=./ ./DesktopEditors
 ```
 
@@ -133,7 +133,7 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
     sudo rm -f /etc/nginx/sites-enabled/default
     ```
 
-3. Set up the new website. To do that create the `/etc/nginx/sites-available/gboffice-documentserver`
+3. Set up the new website. To do that create the `/etc/nginx/sites-available/onlyoffice-documentserver`
    file with the following contents:
 
     ```bash
@@ -174,7 +174,7 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
    `/etc/nginx/sites-available` directory:
 
     ```bash
-    sudo ln -s /etc/nginx/sites-available/gboffice-documentserver /etc/nginx/sites-enabled/gboffice-documentserver
+    sudo ln -s /etc/nginx/sites-available/onlyoffice-documentserver /etc/nginx/sites-enabled/onlyoffice-documentserver
     ```
 
 5. Restart NGINX to apply the changes:
@@ -193,21 +193,21 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
 
 2. Create the PostgreSQL database and user:
 
-    **Note**: The created database must have **gboffice** both for user and password.
+    **Note**: The created database must have **onlyoffice** both for user and password.
 
     ```bash
-    sudo -i -u postgres psql -c "CREATE USER gboffice WITH PASSWORD 'gboffice';"
-    sudo -i -u postgres psql -c "CREATE DATABASE gboffice OWNER gboffice;"
+    sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH PASSWORD 'onlyoffice';"
+    sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice OWNER onlyoffice;"
     ```
 
 3. Configure the database:
 
     ```bash
-    psql -hlocalhost -Ugboffice -d gboffice -f ../../out/linux_64/gboffice/documentserver/server/schema/postgresql/createdb.sql
+    psql -hlocalhost -Uonlyoffice -d onlyoffice -f ../../out/linux_64/onlyoffice/documentserver/server/schema/postgresql/createdb.sql
     ```
 
-**Note**: Upon that, you will be asked to provide a password for the **gboffice**
-PostgreSQL user. Please enter the **gboffice** password.
+**Note**: Upon that, you will be asked to provide a password for the **onlyoffice**
+PostgreSQL user. Please enter the **onlyoffice** password.
 
 ###### Installing RabbitMQ
 
@@ -218,7 +218,7 @@ sudo apt-get install rabbitmq-server
 ###### Generate fonts data
 
 ```bash
-cd out/linux_64/gboffice/documentserver/
+cd out/linux_64/onlyoffice/documentserver/
 mkdir fonts
 LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allfontsgen \
   --input="${PWD}/core-fonts" \
