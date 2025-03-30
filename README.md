@@ -4,9 +4,9 @@
 
 **build_tools** allow you to automatically get and install all the components
 necessary for the compilation process, all the dependencies required for the
-**ONLYOFFICE Document Server**, **Document Builder** and **Desktop Editors**
+**GbOffice Document Server**, **Document Builder** and **Desktop Editors**
  correct work, as well as to get the latest version of
-**ONLYOFFICE products** source code and build all their components.
+**GbOffice products** source code and build all their components.
 
 **Important!**  We can only guarantee the correct work of the products built from
 the `master` branch.
@@ -23,12 +23,12 @@ You might need to install **Python**, depending on your version of Ubuntu:
 sudo apt-get install -y python
 ```
 
-### Building ONLYOFFICE products source code
+### Building GbOffice products source code
 
 1. Clone the build_tools repository:
 
     ```bash
-    git clone https://github.com/ONLYOFFICE/build_tools.git
+    git clone https://github.com/GbOffice/build_tools.git
     ```
 
 2. Go to the `build_tools/tools/linux` directory:
@@ -43,12 +43,12 @@ sudo apt-get install -y python
     ./automate.py
     ```
 
-If you run the script without any parameters this allows to build **ONLYOFFICE
+If you run the script without any parameters this allows to build **GbOffice
 Document Server**, **Document Builder** and **Desktop Editors**.
 
 The result will be available in the `./out` directory.
 
-To build **ONLYOFFICE** products separately run the script with the parameter
+To build **GbOffice** products separately run the script with the parameter
 corresponding to the necessary product.
 
 It’s also possible to build several products at once as shown in the example
@@ -62,19 +62,19 @@ below.
 
 ### Using Docker
 
-You can also build all **ONLYOFFICE products** at once using Docker.
-Build the `onlyoffice-document-editors-builder` Docker image using the
+You can also build all **GbOffice products** at once using Docker.
+Build the `gboffice-document-editors-builder` Docker image using the
 provided `Dockerfile` and run the corresponding Docker container.
 
 ```bash
 mkdir out
-docker build --tag onlyoffice-document-editors-builder .
-docker run -v $PWD/out:/build_tools/out onlyoffice-document-editors-builder
+docker build --tag gboffice-document-editors-builder .
+docker run -v $PWD/out:/build_tools/out gboffice-document-editors-builder
 ```
 
 The result will be available in the `./out` directory.
 
-### Building and running ONLYOFFICE products separately
+### Building and running GbOffice products separately
 
 #### Document Builder
 
@@ -87,7 +87,7 @@ The result will be available in the `./out` directory.
 ##### Running Document Builder
 
 ```bash
-cd ../../out/linux_64/onlyoffice/documentbuilder
+cd ../../out/linux_64/gboffice/documentbuilder
 ./docbuilder
 ```
 
@@ -102,7 +102,7 @@ cd ../../out/linux_64/onlyoffice/documentbuilder
 ##### Running Desktop Editors
 
 ```bash
-cd ../../out/linux_64/onlyoffice/desktopeditors
+cd ../../out/linux_64/gboffice/desktopeditors
 LD_LIBRARY_PATH=./ ./DesktopEditors
 ```
 
@@ -133,7 +133,7 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
     sudo rm -f /etc/nginx/sites-enabled/default
     ```
 
-3. Set up the new website. To do that create the `/etc/nginx/sites-available/onlyoffice-documentserver`
+3. Set up the new website. To do that create the `/etc/nginx/sites-available/gboffice-documentserver`
    file with the following contents:
 
     ```bash
@@ -174,7 +174,7 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
    `/etc/nginx/sites-available` directory:
 
     ```bash
-    sudo ln -s /etc/nginx/sites-available/onlyoffice-documentserver /etc/nginx/sites-enabled/onlyoffice-documentserver
+    sudo ln -s /etc/nginx/sites-available/gboffice-documentserver /etc/nginx/sites-enabled/gboffice-documentserver
     ```
 
 5. Restart NGINX to apply the changes:
@@ -193,21 +193,21 @@ LD_LIBRARY_PATH=./ ./DesktopEditors
 
 2. Create the PostgreSQL database and user:
 
-    **Note**: The created database must have **onlyoffice** both for user and password.
+    **Note**: The created database must have **gboffice** both for user and password.
 
     ```bash
-    sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH PASSWORD 'onlyoffice';"
-    sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice OWNER onlyoffice;"
+    sudo -i -u postgres psql -c "CREATE USER gboffice WITH PASSWORD 'gboffice';"
+    sudo -i -u postgres psql -c "CREATE DATABASE gboffice OWNER gboffice;"
     ```
 
 3. Configure the database:
 
     ```bash
-    psql -hlocalhost -Uonlyoffice -d onlyoffice -f ../../out/linux_64/onlyoffice/documentserver/server/schema/postgresql/createdb.sql
+    psql -hlocalhost -Ugboffice -d gboffice -f ../../out/linux_64/gboffice/documentserver/server/schema/postgresql/createdb.sql
     ```
 
-**Note**: Upon that, you will be asked to provide a password for the **onlyoffice**
-PostgreSQL user. Please enter the **onlyoffice** password.
+**Note**: Upon that, you will be asked to provide a password for the **gboffice**
+PostgreSQL user. Please enter the **gboffice** password.
 
 ###### Installing RabbitMQ
 
@@ -218,7 +218,7 @@ sudo apt-get install rabbitmq-server
 ###### Generate fonts data
 
 ```bash
-cd out/linux_64/onlyoffice/documentserver/
+cd out/linux_64/gboffice/documentserver/
 mkdir fonts
 LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allfontsgen \
   --input="${PWD}/core-fonts" \
@@ -233,7 +233,7 @@ LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allfontsgen \
 ###### Generate presentation themes
 
 ```bash
-cd out/linux_64/onlyoffice/documentserver/
+cd out/linux_64/gboffice/documentserver/
 LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allthemesgen \
   --converter-dir="${PWD}/server/FileConverter/bin"\
   --src="${PWD}/sdkjs/slide/themes"\
@@ -249,7 +249,7 @@ allow to run foreground processes in background mode.
 1. Start the **FileConverter** service:
 
     ```bash
-    cd out/linux_64/onlyoffice/documentserver/server/FileConverter
+    cd out/linux_64/gboffice/documentserver/server/FileConverter
     LD_LIBRARY_PATH=$PWD/bin \
     NODE_ENV=development-linux \
     NODE_CONFIG_DIR=$PWD/../Common/config \
@@ -259,7 +259,7 @@ allow to run foreground processes in background mode.
 2. Start the **DocService** service:
 
     ```bash
-    cd out/linux_64/onlyoffice/documentserver/server/DocService
+    cd out/linux_64/gboffice/documentserver/server/DocService
     NODE_ENV=development-linux \
     NODE_CONFIG_DIR=$PWD/../Common/config \
     ./docservice

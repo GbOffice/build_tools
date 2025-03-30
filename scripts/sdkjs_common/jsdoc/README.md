@@ -1,7 +1,7 @@
 
 # Documentation Generation Guide
 
-This guide explains how to generate documentation for Onlyoffice Builder/Plugins API using the provided Python scripts: `generate_docs_json.py`, `generate_docs_plugins_json.py`, `generate_docs_md.py`. These scripts are used to create JSON and Markdown documentation for the `apiBuilder.js` files from the word, cell, and slide editors.
+This guide explains how to generate documentation for GbOffice Builder/Plugins API using the provided Python scripts: `generate_docs_json.py`, `generate_docs_plugins_json.py`, `generate_docs_md.py`. These scripts are used to create JSON and Markdown documentation for the `apiBuilder.js` files from the word, cell, and slide editors.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Python v3.10 and above
 ## Installation
 
 ```bash
-git clone https://github.com/ONLYOFFICE/build_tools.git
+git clone https://github.com/GbOffice/build_tools.git
 cd build_tools/scripts/sdkjs_common/jsdoc
 npm install
 ```
