@@ -27,12 +27,12 @@ if ("windows" == platform):
 if (dependence.check_gh() != True or dependence.check_gh_auth() != True):
   sys.exit(0)
 
-base.cmd_in_dir('../../', 'python', ['configure.py', '--branding', 'onlyoffice', '--branding-url', 'https://github.com/GbOffice/onlyoffice.git', '--branch', branch_from, '--module', 'core desktop builder server mobile', '--update', '1', '--update-light', '1', '--clean', '0'])
+base.cmd_in_dir('../../', 'python', ['configure.py', '--branding', 'onlyoffice', '--branding-url', 'https://github.com/GbOffice/gboffice.git', '--branch', branch_from, '--module', 'core desktop builder server mobile', '--update', '1', '--update-light', '1', '--clean', '0'])
 
 # parse configuration
 config.parse()
 
-base.git_update('onlyoffice')
+base.git_update('gboffice')
 
 # correct defaults (the branding repo is already updated)
 config.parse_defaults()
@@ -44,7 +44,7 @@ repositories['core-ext'] = [True, False]
 
 base.update_repositories(repositories)
 
-repositories['onlyoffice'] = [True, False]
+repositories['gboffice'] = [True, False]
 
 for repo in repositories:
   current_dir = repositories[repo][1]

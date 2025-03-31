@@ -44,7 +44,7 @@ instruction show how to use docker without sudo.
 
 ```bash
 cd build_tools/develop
-docker pull onlyoffice/documentserver
+docker pull gboffice/documentserver
 docker build --no-cache -t documentserver-develop .
 ```
 
@@ -91,13 +91,13 @@ node_modules
 run with `sdkjs` and `web-apps`
 
 ```bash
-docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $pwd/sdkjs:/var/www/onlyoffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/onlyoffice/documentserver/web-apps documentserver-develop
+docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $pwd/sdkjs:/var/www/gboffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/gboffice/documentserver/web-apps documentserver-develop
 ```
 
 or run with `sdkjs`, `web-apps` and `server`
 
 ```bash
-docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $pwd/sdkjs:/var/www/onlyoffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/onlyoffice/documentserver/web-apps -v $pwd/server:/var/www/onlyoffice/documentserver/server documentserver-develop
+docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $pwd/sdkjs:/var/www/gboffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/gboffice/documentserver/web-apps -v $pwd/server:/var/www/gboffice/documentserver/server documentserver-develop
 ```
 
 ### docker run on Linux or macOS
@@ -105,13 +105,13 @@ docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $
 run with `sdkjs` and `web-apps`
 
 ```bash
-docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $(pwd)/sdkjs:/var/www/onlyoffice/documentserver/sdkjs -v $(pwd)/web-apps:/var/www/onlyoffice/documentserver/web-apps documentserver-develop
+docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $(pwd)/sdkjs:/var/www/gboffice/documentserver/sdkjs -v $(pwd)/web-apps:/var/www/gboffice/documentserver/web-apps documentserver-develop
 ```
 
 or run with `sdkjs`, `web-apps` and `server`
 
 ```bash
-docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $(pwd)/sdkjs:/var/www/onlyoffice/documentserver/sdkjs -v $(pwd)/web-apps:/var/www/onlyoffice/documentserver/web-apps -v $(pwd)/server:/var/www/onlyoffice/documentserver/server documentserver-develop
+docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true -v $(pwd)/sdkjs:/var/www/gboffice/documentserver/sdkjs -v $(pwd)/web-apps:/var/www/gboffice/documentserver/web-apps -v $(pwd)/server:/var/www/gboffice/documentserver/server documentserver-develop
 ```
 
 ## Open editor
@@ -194,7 +194,7 @@ docker exec -it CONTAINER_ID supervisorctl restart all
 To get additional functionality and branding you need to connect a branding folder,
 additional addon folders and pass command line arguments
 
-For example run with `onlyoffice` branding and
+For example run with `gboffice` branding and
 addons:`sdkjs-forms`, `sdkjs-ooxml`, `web-apps-mobile`
 
 ### docker run on Windows (PowerShell) with branding
@@ -204,8 +204,8 @@ node_modules
 
 ```bash
 docker run -i -t -p 80:80 --restart=always -e ALLOW_PRIVATE_IP_ADDRESS=true `
-    -v $pwd/sdkjs:/var/www/onlyoffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/onlyoffice/documentserver/web-apps `
-    -v $pwd/onlyoffice:/var/www/onlyoffice/documentserver/onlyoffice -v $pwd/sdkjs-ooxml:/var/www/onlyoffice/documentserver/sdkjs-ooxml -v $pwd/sdkjs-forms:/var/www/onlyoffice/documentserver/sdkjs-forms -v $pwd/web-apps-mobile:/var/www/onlyoffice/documentserver/web-apps-mobile `
+    -v $pwd/sdkjs:/var/www/gboffice/documentserver/sdkjs -v $pwd/web-apps:/var/www/gboffice/documentserver/web-apps `
+    -v $pwd/gboffice:/var/www/gboffice/documentserver/gboffice -v $pwd/sdkjs-ooxml:/var/www/gboffice/documentserver/sdkjs-ooxml -v $pwd/sdkjs-forms:/var/www/gboffice/documentserver/sdkjs-forms -v $pwd/web-apps-mobile:/var/www/onlyoffice/documentserver/web-apps-mobile `
     documentserver-develop args --branding onlyoffice --branding-url 'https://github.com/GbOffice/onlyoffice.git' --siteUrl localhost
 ```
 

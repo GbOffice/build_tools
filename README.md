@@ -63,13 +63,13 @@ below.
 ### Using Docker
 
 You can also build all **GbOffice products** at once using Docker.
-Build the `onlyoffice-document-editors-builder` Docker image using the
+Build the `gboffice-document-editors-builder` Docker image using the
 provided `Dockerfile` and run the corresponding Docker container.
 
 ```bash
 mkdir out
-docker build --tag onlyoffice-document-editors-builder .
-docker run -v $PWD/out:/build_tools/out onlyoffice-document-editors-builder
+docker build --tag gboffice-document-editors-builder .
+docker run -v $PWD/out:/build_tools/out gboffice-document-editors-builder
 ```
 
 The result will be available in the `./out` directory.
@@ -233,7 +233,7 @@ LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allfontsgen \
 ###### Generate presentation themes
 
 ```bash
-cd out/linux_64/onlyoffice/documentserver/
+cd out/linux_64/gboffice/documentserver/
 LD_LIBRARY_PATH=${PWD}/server/FileConverter/bin server/tools/allthemesgen \
   --converter-dir="${PWD}/server/FileConverter/bin"\
   --src="${PWD}/sdkjs/slide/themes"\
@@ -249,7 +249,7 @@ allow to run foreground processes in background mode.
 1. Start the **FileConverter** service:
 
     ```bash
-    cd out/linux_64/onlyoffice/documentserver/server/FileConverter
+    cd out/linux_64/gboffice/documentserver/server/FileConverter
     LD_LIBRARY_PATH=$PWD/bin \
     NODE_ENV=development-linux \
     NODE_CONFIG_DIR=$PWD/../Common/config \
@@ -259,7 +259,7 @@ allow to run foreground processes in background mode.
 2. Start the **DocService** service:
 
     ```bash
-    cd out/linux_64/onlyoffice/documentserver/server/DocService
+    cd out/linux_64/gboffice/documentserver/server/DocService
     NODE_ENV=development-linux \
     NODE_CONFIG_DIR=$PWD/../Common/config \
     ./docservice

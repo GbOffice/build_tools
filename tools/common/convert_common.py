@@ -129,9 +129,9 @@ def convertFile(directory_x2t, file_input, file_output, convert_params):
   directory_fonts = directory_x2t + "/sdkjs/common"
   directory_fonts_local = ""
   if "windows" == base.host_platform():
-    directory_fonts_local = os.getenv("LOCALAPPDATA") + "/GbOffice/docbuilder"
+    directory_fonts_local = os.getenv("LOCALAPPDATA") + "/ONLYOFFICE/docbuilder"
   else:
-    directory_fonts_local = os.path.expanduser('~') + "/.local/share/GbOffice/docbuilder"
+    directory_fonts_local = os.path.expanduser('~') + "/.local/share/ONLYOFFICE/docbuilder"
 
   if not base.is_file(directory_fonts + "/AllFonts.js") and not base.is_file(directory_fonts_local + "/AllFonts.js"):
     base.cmd_in_dir(directory_x2t, "docbuilder", [], True)
