@@ -1,4 +1,4 @@
-FROM gboffice/documentserver:latest
+FROM hub.gboffice.com:5000/gboffice/documentserver:latest
 RUN apt-get update -y && \ 
 	apt-get install git -y \
 			python3 -y \
